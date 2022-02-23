@@ -28,6 +28,21 @@ exports.create = (req, res) => {
   });
 };
 
+exports.findOne = (req, res) => {
+  const id = req.params.id;
+
+  Job.findByPk(id)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        status:"fail",
+        message: err.message || "Error retrieving Tutorial with id=" + id
+      });
+    });
+};
+
 exports.delete = (req, res) => {
 
   const id = req.body.id;
