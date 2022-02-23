@@ -29,18 +29,25 @@ exports.create = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-  const id = req.params.id;
+  const id = req.query.id;
 
   Job.findByPk(id)
-    .then(data => {
+  .then(data => {
+    if (data != null) {
       res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
+    } else {
+      res.send({
         status:"fail",
-        message: err.message || "Error retrieving Tutorial with id=" + id
+        message: `Cannot get job with id=${id}. Maybe job does not exist!`
       });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      status:"fail",
+      message: "Some error occurred while retrieving tutorials."
     });
+  });
 };
 
 exports.delete = (req, res) => {
