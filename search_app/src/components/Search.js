@@ -19,7 +19,7 @@ class Search extends React.Component
 
     fetchSearchResults = (query) => {
         if(query===null || query === '') {
-            query = 'flutter';
+            query = 'end';
         }
         let queryParamsArray = query.split(",");
         queryParamsArray = queryParamsArray.filter(function(value){ 

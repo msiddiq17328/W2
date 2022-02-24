@@ -1,6 +1,18 @@
 module.exports = function (input) {
-  const searchParams = input.query.input_params.toString();
 
+  let searchParams = input.query.input_params;
+  if(!searchParams) {
+    searchParams = "end";
+  } else {
+    searchParams = searchParams.filter(function(value){ 
+        return value !== '' && value !== ' ';
+      });
+      if(searchParams.length === 0) {
+        searchParams = "end";
+      } else {
+        searchParams = searchParams.toString();
+      }
+  }
   //order by the search result
   const sortingColumns = ['post_date','location','leave_type'];
   let orderBy = input.query.orderBy == null || input.query.orderBy == '' ? "post_date" : input.query.orderBy;
