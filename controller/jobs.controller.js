@@ -1,6 +1,7 @@
 const db = require("../models"); // models path depend on your structure
 const Job = db.jobs;
 const { QueryTypes } = require('sequelize');
+const generateQuery = require('./helpers/generateQuery');
 
 exports.create = (req, res) => {
 
@@ -79,41 +80,12 @@ exports.delete = (req, res) => {
 };
 
 exports.findAll = async (req, res) => {
-  const searchParams = req.query.input_params;
 
-  //order by the search result
-  const sortingColumns = ['post_date','location','leave_type'];
-  let orderBy = req.body.order_by == null || req.body.order_by == '' ? "post_date" : req.body.order_by;
-  orderBy = sortingColumns.includes(orderBy) ? orderBy : "post_date";
-
-  //query to be used to fetch search results
-  let queryToBeExecuted = null;
-  let searching = '';
-  if (searchParams && searchParams) {
-    const myArray = searchParams.split(",");
-    myArray.forEach((element,index) => {
-      if(index > 0)
-      {
-        searching += " OR job_title like " + "'%" + element + "%'";
-        if(index + 1 == myArray.length)
-        {
-          searching += " order by " + orderBy + " desc"
-        }
-      } else {
-        searching += "like " + "'%" + element + "%'";
-        if(myArray.length == 1)
-        {
-          searching += " order by " + orderBy + " desc"
-        }
-      }
-    }); 
-    queryToBeExecuted = "select * from jobs where job_title " + searching;
-  } else {
-    queryToBeExecuted = `select * from jobs where job_title like '%%'`;
-  }
-
+  const offset = req.body.offset;
+  let queryString = generateQuery(req);
+  
   //execute the query here
-  await Job.sequelize.query(queryToBeExecuted, { type: QueryTypes.SELECT })
+  await Job.sequelize.query(queryString, {replacements: { limiter: '10',offset: offset }, type: QueryTypes.SELECT })
   .then(data => {
     res.send(data);
   })
