@@ -1,6 +1,7 @@
 import React from "react";
 import './Search.css';
 import axios from 'axios';
+import CardNew from './CardComponent';
 
 class Search extends React.Component
 {
@@ -9,9 +10,7 @@ class Search extends React.Component
         super(props);
         this.state = {
             query: '',
-            results: {
-
-            },
+            results: [],
             loading:false,
             message:''
         }
@@ -26,7 +25,6 @@ class Search extends React.Component
             return value !== '';
         });
         const getAllJobsUrl = `http://localhost:8080/jobs/search`;
-        console.log(getAllJobsUrl);
         axios.get(getAllJobsUrl,{
             params:{
                 input_params:queryParamsArray,
@@ -36,11 +34,11 @@ class Search extends React.Component
             }
         })
         .then(res => {
-            console.warn(res);
+            this.results = res.data
         })
         .catch(err => {
             console.log('im server response error');
-    })
+        })
     };
 
     handleOnInputChange = (event) => {
@@ -61,8 +59,12 @@ class Search extends React.Component
                 <h2 className="heading">Live Job Searching</h2>
                 <label className="search-job" htmlFor="search-input">
                 <input onChange={this.handleOnInputChange} id="search-input" type="text" value={query} placeholder="Search Job Here"/>
-                <i class="fa fa-search icon-zoom-in"/>
+                <i className="fa fa-search icon-zoom-in"/>
                 </label>
+                <button className="sort-button" value="post_date" >Sort by post date</button>
+                <button className="sort-button" value="location" >Sort by location</button>
+                <button className="sort-button" value="company" >Sort by company</button>
+                <CardNew job_title="backend" company="grocer app" location="lahore"/>
             </div>
         )
     }
