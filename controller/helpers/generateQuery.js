@@ -1,9 +1,9 @@
 module.exports = function (input) {
-  const searchParams = input.query.input_params;
+  const searchParams = input.query.input_params.toString();
 
   //order by the search result
   const sortingColumns = ['post_date','location','leave_type'];
-  let orderBy = input.body.order_by == null || input.body.order_by == '' ? "post_date" : input.body.order_by;
+  let orderBy = input.query.orderBy == null || input.query.orderBy == '' ? "post_date" : input.query.orderBy;
   orderBy = sortingColumns.includes(orderBy) ? orderBy : "post_date";
 
   //query to be used to fetch search results
@@ -17,7 +17,7 @@ module.exports = function (input) {
         searching += " OR job_title like " + "'%" + element + "%'";
         if(index + 1 == myArray.length)
         {
-          searching += " order by " + orderBy + " desc limit 5 offset :offset"
+          searching += " order by " + orderBy + " desc limit :limiter offset :offset"
         }
       } else {
         searching += "like " + "'%" + element + "%'";

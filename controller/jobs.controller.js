@@ -80,12 +80,12 @@ exports.delete = (req, res) => {
 };
 
 exports.findAll = async (req, res) => {
+  const offset = parseInt(req.query.offset);
+  const limit = parseInt(req.query.limit);
 
-  const offset = req.body.offset;
+
   let queryString = generateQuery(req);
-  
-  //execute the query here
-  await Job.sequelize.query(queryString, {replacements: { limiter: '10',offset: offset }, type: QueryTypes.SELECT })
+  await Job.sequelize.query(queryString, {replacements: { limiter: limit,offset: offset }, type: QueryTypes.SELECT })
   .then(data => {
     res.send(data);
   })

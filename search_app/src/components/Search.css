@@ -1,0 +1,34 @@
+.heading {
+    font-size: 30px;
+    padding: 16px 0;
+    color: #444;
+    text-align: center;
+}
+
+.container {
+    margin: 36px auto;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-label {
+    position: relative;
+}
+
+.container input {
+    width: 100%;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-style: italic;
+    color: #444;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.icon-zoom-in {
+    position:absolute;
+    top: 150px;
+    right: 350px;
+}
+
