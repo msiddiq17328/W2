@@ -34,6 +34,7 @@ class Search extends React.Component
             }
         })
         .then(res => {
+            console.log(res.data);
             this.results = res.data
         })
         .catch(err => {
@@ -59,7 +60,6 @@ class Search extends React.Component
                 <h2 className="heading">Live Job Searching</h2>
                 <label className="search-job" htmlFor="search-input">
                 <input onChange={this.handleOnInputChange} id="search-input" type="text" value={query} placeholder="Search Job Here"/>
-                <i className="fa fa-search icon-zoom-in"/>
                 </label>
                 <button className="sort-button" value="post_date" >Sort by post date</button>
                 <button className="sort-button" value="location" >Sort by location</button>
