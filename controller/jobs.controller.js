@@ -4,8 +4,6 @@ const { QueryTypes } = require('sequelize');
 const generateQuery = require('./helpers/generateQuery');
 
 exports.create = (req, res) => {
-
-  console.log(`Rs ${req.body.salary_range_1} - Rs ${req.body.salary_range_2} a month`);
   // Create a Job
   const job = {
     id:Date.now().toString(),

@@ -14,7 +14,6 @@ function App() {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div style={{ width: "30%", marginTop: "100px" }}>
             <Searchbar></Searchbar>
-            <br></br>
             <div style={{display: "flex", justifyContent: "space-between", marginTop: "2%"}}>
                 <DropDown style={{ marginRight: "4px" }}></DropDown>
                 <DropDown></DropDown>

@@ -61,14 +61,13 @@ export default function Searchbar({ search, setsearch }) {
     axios.get(getAllJobsUrl,{
         params:{
             input_params:queryParamsArray,
-            limit:100,
+            limit:20,
             offset:0,
             orderBy:"post_date"
         }
     })
     .then(res => {
         console.log(res.data);
-        // this.results = res.data
     })
     .catch(err => {
       if (axios.isCancel(err)) {
