@@ -1,7 +1,5 @@
 import React from 'react';
 import './css/blank-card.css';
-import AddIcon from '../assets/images/add.png';
-import ProfileImage from '../assets/images/placeholder_female1.png';
 
 class BlankCard extends React.Component{
 
@@ -25,13 +23,9 @@ class BlankCard extends React.Component{
   render(){
 
     this.newCard = {
-      "id": this.props.cards.length,
-      "category" : "DEV",
-      "username" : "Anonymous",
-      "userImg" : ProfileImage,
-      "headline" : "Check this out!",
-      "desc" : "Isn't that amazing?",
-      "link" : "www.google.com"
+      "company": this.props.company,
+      "job_title" : this.props.job_title,
+      "location" : this.props.location
     };
   
     if(!this.state.clicked){
@@ -42,7 +36,6 @@ class BlankCard extends React.Component{
                   clicked: true
                 });
               }}>
-          <img src={AddIcon} alt=""/>
         </div>
       );
     } else {
@@ -75,21 +68,6 @@ class BlankCard extends React.Component{
                         placeholder="Catchy Headline"
                         onChange={ (e) => this.newCard.headline = e.target.value}
                         />
-            </div>
-            <div className="usr-profile">
-              <span className="usr-name">
-                <input type="text" 
-                        maxLength="20" 
-                        placeholder="Username"
-                        onChange={ (e) => this.newCard.username = e.target.value}
-                />
-              </span>
-              <span className="usr-img">
-                <input type="url" 
-                        placeholder='Image URL'
-                        onChange={ (e) => this.newCard.userImg = e.target.value}
-                        />
-              </span>
             </div>
           </div>
           <div className="card-bottom">
