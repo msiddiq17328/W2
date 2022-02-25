@@ -5,11 +5,13 @@ const generateQuery = require('./helpers/generateQuery');
 
 exports.create = (req, res) => {
 
+  console.log(`Rs ${req.body.salary_range_1} - Rs ${req.body.salary_range_2} a month`);
   // Create a Job
   const job = {
     id:Date.now().toString(),
     job_title: req.body.job_title ?? null,
     company: req.body.company ?? null,
+    salary_range: `Rs ${req.body.salary_range_1} - Rs ${req.body.salary_range_2} a month` ?? null,
     location: req.body.location ?? null, 
     post_date: new Date() ?? null,
     apply_email: req.body.apply_email ?? null,

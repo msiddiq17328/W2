@@ -7,6 +7,9 @@ module.exports = (sequelize, Sequelize) => {
         company: {
             type: Sequelize.STRING
         },
+        salary_range: {
+            type: Sequelize.STRING
+        },
         location: {
             type: Sequelize.STRING
         },
