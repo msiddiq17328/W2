@@ -13,4 +13,6 @@ COPY .env ./
 
 ENV NODE_ENV=${NODE_ENV}
 
-CMD ["node","app"]
+expose 8080
+
+CMD ["node","index"]
