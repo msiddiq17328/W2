@@ -14,6 +14,7 @@ further tests can be added, for running tests with jest run
 npm test
 
 for running, use 
+create the mysql table, in the repo locally
 npm install
 nodemon is used for development purposes
 
