@@ -24,12 +24,13 @@ export default function JobDetails({data}) {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "column", width: "100%", alignItems: "start"}}>
           <div
             style={{
               display: "flex",
               marginTop: "16px",
-              justifyContent: "space-evenly"
+              width: "100%",
+              justifyContent: "space-between"
             }}
           >
             <Typography variant="h6">{data.job_title}</Typography>
@@ -37,7 +38,7 @@ export default function JobDetails({data}) {
               sx={{ marginRight: "4px", color: "#3949ab" }}
             />
           </div>
-          <div style={{ display: "flex", marginTop: "16px" }}>
+          <div style={{ display: "flex", marginTop: "16px", width: "100%", justifyContent: "space-between"}}>
             <Typography>{data.company}</Typography>
             <BlockOutlinedIcon
               sx={{
