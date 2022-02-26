@@ -1,9 +1,11 @@
+import React,{useContext} from "react";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { Box } from "@mui/material";
 import axios from 'axios';
 import { debounce } from 'lodash';
+import {NewContext} from '../datasharing/newcontext'
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -47,8 +49,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 export default function Searchbar({ search, setsearch }) {
+
+  const  {setData} = useContext(NewContext);
   const fetchSearchResults = (query) => {
-    console.log(query);
     if(query===null || query === '') {
         query = 'end';
     }
@@ -67,7 +70,7 @@ export default function Searchbar({ search, setsearch }) {
         }
     })
     .then(res => {
-        console.log(res.data);
+        setData(res.data)
     })
     .catch(err => {
       if (axios.isCancel(err)) {

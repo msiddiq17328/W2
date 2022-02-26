@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import{  useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Accordion, AccordionSummary } from "@mui/material";
+import React from 'react';
 import SendIcon from "@mui/icons-material/Send";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BlockOutlinedIcon from "@mui/icons-material/BlockOutlined";
 
-export default function JobDetails() {
+
+export default function JobDetails({data}) {
+
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -29,13 +32,13 @@ export default function JobDetails() {
               justifyContent: "space-evenly"
             }}
           >
-            <Typography variant="h6">Shrimp and Chorizo Paella</Typography>
+            <Typography variant="h6">{data.job_title}</Typography>
             <FavoriteBorderOutlinedIcon
               sx={{ marginRight: "4px", color: "#3949ab" }}
             />
           </div>
           <div style={{ display: "flex", marginTop: "16px" }}>
-            <Typography>September 14, 2016</Typography>
+            <Typography>{data.company}</Typography>
             <BlockOutlinedIcon
               sx={{
                 marginRight: "4px",
@@ -49,7 +52,7 @@ export default function JobDetails() {
               color="text.secondary"
               sx={{ width: "80%" }}
             >
-              19 days ago
+              {data.post_date}
             </Typography>
           )}
         </div>
@@ -65,7 +68,7 @@ export default function JobDetails() {
               fontWeight: "bold",
             }}
           >
-            Rs 40,000 - Rs 50,000 a month
+            {data.salary_range}
           </Typography>
           <Typography
             variant="h6"
@@ -99,7 +102,7 @@ export default function JobDetails() {
               color="text.secondary"
               sx={{ width: "80%" }}
             >
-              19 days ago
+              {data.post_date}
             </Typography>
           </div>
         </CardContent>

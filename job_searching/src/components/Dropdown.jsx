@@ -53,7 +53,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function DropDown() {
+export default function DropDown(data) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -75,7 +75,7 @@ export default function DropDown() {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        Options
+        {data.name}
       </Button>
       <StyledMenu
         id="demo-customized-menu"
