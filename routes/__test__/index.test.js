@@ -8,11 +8,11 @@ describe('register',() => {
         .post('/jobs/create')
         .send({
             id:Date.now().toString(),
-            job_title: "backend",
-            company: "ga",
+            job_title: "Backend Developer",
+            company: "Care Pvt Ltd",
             salary_range1: "25000",
             salary_range2: "30000",
-            location:  "lahore",
+            location:  "Islamabad",
             post_date: new Date(),
             apply_email: "Test@gmail.com",
             leave_type: "Weekly"
